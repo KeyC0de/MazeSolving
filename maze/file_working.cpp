@@ -1,10 +1,10 @@
-#include <stdio.h>
+#include <cstdio>
 #include "file_working.h"
 
 // access function to open a file cross platform method
 int doesFileExist(FILE* fp)
 {
-	if ((fp = fopen("sample.txt", "r")) != NULL){// file exists
+	if ((fp = fopen("sample.txt", "r")) != nullptr){// file exists
 	//if (fopen("sample.txt", "r")){// file exists
 		fclose(fp);
 		return 1;
@@ -37,10 +37,11 @@ size_t countLinesOfFile(char *fileName)
 size_t countColumnsOfFile(char *fileName)
 {
     FILE *fp = fopen(fileName, "r");
-    char ch;
+    char ch = ' ';
     size_t columns = 0;
 
-    while (ch != '\n' && ch != EOF) {
+    while ( ch != '\n' && ch != EOF )
+	{
         ch = fgetc(fp);
         columns++;
     }

@@ -4,6 +4,35 @@
 <hr>
 
 
+`#` indicate obstacles
+`.` : empty space
+`S` : starting position
+`G` : ending (Goal) position
+`=` : path followed
+
+So giving the maze "maze1.txt" below as input:</br>
+
+```
+S#####
+......
+#.#.#.
+#.#.#.
+...#.G
+##...#
+```
+
+Would output this:
+
+```
+S#####
+======
+#.#.#=
+#.#.#=
+...#.G
+##...#
+```
+
+where `=` are parts of the resulting path that was taken.
 
 # Contribute
 
@@ -19,3 +48,8 @@ Distributed under the GNU GPL V3 License. See "GNU GPL license.txt" for more inf
 
 email: *nik.lazkey@gmail.com*</br>
 website: *www.keyc0de.net*
+
+
+# Acknowledgements
+
+Recursion: Solving a Maze [link](https://www.cs.bu.edu/teaching/alg/maze/) by Robert I. Pitts

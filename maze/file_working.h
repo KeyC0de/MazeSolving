@@ -9,4 +9,3 @@ int fileCopy(char* inFileName, char* outFileName);
 int cat(int argc, char* argv[]);
 void cpy (FILE* ifp, FILE* ofp);
 int redirectIo();
-

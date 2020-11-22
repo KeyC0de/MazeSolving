@@ -1,26 +1,24 @@
-#pragma once
+#ifndef QUEUELLISTIMPL_H // Include guards
+#define QUEUELLISTIMPL_H
 
-struct qType
-{
+typedef struct qType {
 	char ch;
 	size_t horizCoord;
 	size_t vertCoord;
-	bool visited;
-	bool inPath;
-};// the storage type can be arbitrary
+	_Bool visited;
+	_Bool inPath;
+} qType; // the storage type can be arbitrary
 
-struct Node
-{
+typedef struct Node {
 	qType value;
 	struct Node *next;
-};
+} Node;
 
-struct Queue
-{
+typedef struct Queue {
 	Node *head;
 	Node *tail;
 	int size;
-};
+} Queue;
 
 // Function Declarations
 void initQueue(Queue *Q);
@@ -29,3 +27,5 @@ void enqueue(qType val, Queue *Q);
 qType dequeue(Queue *Q);
 int getQSize(Queue *Q);
 qType peek(Queue *Q);
+
+#endif // QUEUELLISTIMPL_H

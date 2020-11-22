@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <time.h>
+#include <cstdio>
+#include <ctime>
 //#include "measureWtimeCstyle.h"
 
 #define true  1
@@ -23,19 +23,19 @@
 };*/
 
 char maze[rows][columns] = {
-	"S...##",
-	"#.#...",
-	"#.##.#",
-	"..#.##",
-	"#...#G",
-	"#.#..."
+	{'S', '.', '.', '.', '#', '#'},
+	{'#', '.', '#', '.', '.', '.'},
+	{'#', '.', '#', '#', '.', '#'},
+	{'.', '.', '#', '.', '#', '#'},
+	{'#', '.', '.', '.', '#', 'G'},
+	{'#', '.', '#', '.', '.', '.'}
 };
 
-void displayMaze(void);
-_Bool findPath(int x, int y);
+void displayMaze();
+bool findPath(int x, int y);
 
 
-int main(void)
+int main()
 {
 //	startTiming();
 	printf("*** MAZE - Recursive Solve ***\n");
@@ -53,7 +53,7 @@ int main(void)
 }
 
 
-void displayMaze(void)
+void displayMaze()
 {
 	int i;
 	for (i = 0; i < rows; i++)
@@ -63,7 +63,7 @@ void displayMaze(void)
 }
 
 // expects starting position
-_Bool findPath(int x, int y)
+bool findPath(int x, int y)
 {
 	// If (x,y) is out of bounds (outside maze), return false.
 	if (x < 0 || x > columns - 1 || y < 0 || y > rows - 1)

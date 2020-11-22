@@ -1,6 +1,6 @@
-#include <cstdio>
-#include <cstdlib>
-#include "queue_llist.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "queueLlistImpl.h"
 
 void initQueue(Queue *Q)
 {
@@ -36,7 +36,7 @@ qType dequeue(Queue *Q)
 {
 	if (isEmpty(Q)) {
 		printf("Attempt to remove value from an empty Queue - EPIC FAIL.\n");
-		return {};
+		return;
 	}
 	
 	Node *temp = Q->head;		// holds the head Node of the Queue
@@ -62,7 +62,7 @@ qType peek(Queue *Q)
 	if (!isEmpty(Q))
 		return Q->head->value;
 	
-	return {};
+	return;
 }
 
 // prints all values in the Queue (linked list)
