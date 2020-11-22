@@ -261,4 +261,4 @@ __pycache__/
 *.pyc
 
 # exclude specific files
-!maze/recursive_solve.cpp
+maze/recursive_solve.cpp
