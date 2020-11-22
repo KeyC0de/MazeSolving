@@ -3,10 +3,11 @@ CFLAGS = -std=c99 -Wall
 OBJECTS = maze_ekpa.o queueLlistImpl.o fileWorking.o myMath.o
 
 target : $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o Erotima7_M1485
+	$(CC) $(CFLAGS) $(OBJECTS) -o maze
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $<
 
 clean :
-	rm -f Erotima7_M1485 Erotima7_M1485.exe $(OBJECTS)
+	rm -f maze maze.exe $(OBJECTS)
+	del maze maze.exe $(OBJECTS)

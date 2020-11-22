@@ -74,6 +74,7 @@ bool solveMazeBFS( char *fileName )
             }
             else
 			{
+				// maze properties
                 maze[y][x].ch = ch;
                 maze[y][x].horizCoord = x;
                 maze[y][x].vertCoord = y;
@@ -99,6 +100,8 @@ bool solveMazeBFS( char *fileName )
 
     qType current;  // current square
     int y, x;       // current coordinates in the maze
+	
+	std::vector<qType> arr( rows * columns ); // hopefully it is big enough
 
     // 4. Iteration
 	while( !isEmpty( &Q ) )
@@ -106,12 +109,11 @@ bool solveMazeBFS( char *fileName )
         // 4.1 Dequeue Node(s) from the Queue, until we reach a start Node which denotes the end of that path
         current = peek( &Q );
 
-        std::vector<qType> arr( rows * columns ); // hopefully it is big enough
         int count = 0; // array element count
         do
 		{
             arr[count] = dequeue( &Q );
-        } while (arr[count++].ch != 'S');
+        } while ( arr[count++].ch != 'S' );
 
         // 4.2 If we reached the goal stop the iteration
         if ( current.ch == 'G' )
