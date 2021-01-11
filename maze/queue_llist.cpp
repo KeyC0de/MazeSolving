@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "queue_llist.h"
 
+
 void initQueue(Queue *Q)
 {
 	Q->head = 0;
