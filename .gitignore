@@ -262,3 +262,5 @@ __pycache__/
 
 # exclude specific files
 maze/recursive_solve.cpp
+readme.html
+readme.site.md
