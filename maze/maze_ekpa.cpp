@@ -8,6 +8,7 @@
 #define true  1
 #define false 0
 
+
 // '.' = open position
 // '#' = blocked
 // 'S' = starting position
@@ -53,11 +54,12 @@ bool solveMazeBFS( char *fileName )
 
 	// 1. Create & Initialize Queue
 	Queue Q;
-	initQueue(&Q);
+	initQueue( &Q );
 
 	// 2. Now read maze from file and store it in "maze"
 	FILE *fp = fopen( fileName, "r" );
-	if ( fp ) {
+	if ( fp )
+	{
 		size_t x = 0, y = 0;
 		//size_t length = 0;
 		char ch;
@@ -101,27 +103,27 @@ bool solveMazeBFS( char *fileName )
 	qType current;  // current square
 	int y, x;       // current coordinates in the maze
 	
-	std::vector<qType> arr( rows * columns ); // hopefully it is big enough
+	std::vector<qType> traceablePath( rows * columns );
 
 	// 4. Iteration
 	while( !isEmpty( &Q ) )
 	{
-		// 4.1 Dequeue Node(s) from the Queue, until we reach a start Node which denotes the end of that path
+		// 4.1 check the head of Queue
 		current = peek( &Q );
 
 		int count = 0; // array element count
 		do
 		{
-			arr[count] = dequeue( &Q );
-		} while ( arr[count++].ch != 'S' );
+			traceablePath[count] = dequeue( &Q );
+		} while ( traceablePath[count++].ch != 'S' );
 
 		// 4.2 If we reached the goal stop the iteration
 		if ( current.ch == 'G' )
 		{
-			// 4.2.1 Mark correct path, those squares until the first 'S' square
+			// 4.2.1 Mark correct path - this will be our reconstructed path, going from the Goal 'G' square backwards to the first 'S' square found in traceablePath.
 			while( --count )
 			{
-				qType temp = arr[count];
+				qType temp = traceablePath[count];
 				maze[temp.vertCoord][temp.horizCoord].inPath = true;
 			}
 
@@ -149,7 +151,7 @@ bool solveMazeBFS( char *fileName )
 				enqueue( maze[y][x - 1], &Q );
 				for ( int i = 0; i < count; i++ )
 				{// 4.4.2 enqueue previous path
-					enqueue( arr[i], &Q );
+					enqueue( traceablePath[i], &Q );
 				}
 			}
 		}
@@ -165,7 +167,7 @@ bool solveMazeBFS( char *fileName )
 				// enqueue previous path
 				for ( int i = 0; i < count; i++ )
 				{ // enqueue previous path
-					enqueue( arr[i], &Q );
+					enqueue( traceablePath[i], &Q );
 				}
 			}
 		}
@@ -181,7 +183,7 @@ bool solveMazeBFS( char *fileName )
 				// enqueue previous path
 				for ( int i = 0; i < count; i++ )
 				{// enqueue previous path
-					enqueue( arr[i], &Q );
+					enqueue( traceablePath[i], &Q );
 				}
 			}
 		}
@@ -197,7 +199,7 @@ bool solveMazeBFS( char *fileName )
 				// enqueue previous path
 				for ( int i = 0; i < count; i++ )
 				{// enqueue previous path
-					enqueue(arr[i], &Q);
+					enqueue(traceablePath[i], &Q);
 				}
 			}
 		}
