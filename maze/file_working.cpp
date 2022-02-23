@@ -109,25 +109,3 @@ void countLetterOccurences( char* filename )
 	printf( "\n" );
 	printf( "\nwhite space = %d, other = %d\n", nwhite, nother );
 }
-
-
-/*
-int main(int argc, char* argv[])
-{
-	printf("lines = %d\n", countLinesOfFile("attiko_metro.txt"));
-	printf("columns = %d\n", countColumnsOfFile("attiko_metro.txt"));
-	///////////////////////////////////////////////////////////////////
-	countLetterOccurences("ls.txt");
-	///////////////////////////////////////////////////////////////////
-	// fileCopy
-	if (argc != 3){
-		fprintf(stderr, "Usage: %s [soure-file] [copied-file]\n", argv[0]);
-		return 1;
-	}
-	char* inF = argv[1];
-	char* outF = argv[2];
-
-	fileCopy(inF, outF);
-}
-
-*/
