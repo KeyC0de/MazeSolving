@@ -22,9 +22,9 @@ void displayMaze( size_t rows,
 	std::vector<std::vector<qType>>& maze )
 {
 	size_t y, x;
-	for ( y = 0; y < rows; y++ )
+	for ( y = 0; y < rows; ++y )
 	{
-		for ( x = 0; x < columns; x++ )
+		for ( x = 0; x < columns; ++x )
 		{
 			if ( maze[y][x].inPath
 				&& maze[y][x].ch != 'S' )
@@ -48,9 +48,9 @@ bool solveMazeBFS( char *fileName )
 
 	//printf("\nrows = %d columns = %d\n", rows, columns); // for debugging
 
-	// declare a pointer to an array of type qType (the type that will rests inside the queue
+	// declare a pointer to an array of type qType (the type that will rest inside the queue
 	// with number of rows and columns evaluated at runtime
-	std::vector<std::vector<qType>> maze( rows, std::vector<qType>( columns ) );
+	std::vector<std::vector<qType>> maze{rows, std::vector<qType>{columns}};
 
 	// 1. Create & Initialize Queue
 	Queue Q;
@@ -103,7 +103,7 @@ bool solveMazeBFS( char *fileName )
 	qType current;  // current square
 	int y, x;       // current coordinates in the maze
 	
-	std::vector<qType> traceablePath( rows * columns );
+	std::vector<qType> traceablePath{rows * columns};
 
 	// 4. Iteration
 	while( !isEmpty( &Q ) )
@@ -138,16 +138,15 @@ bool solveMazeBFS( char *fileName )
 		y = current.vertCoord;
 		// 4.4 Examine the Von Neumann neighborhood of the current square in the maze.
 		//     Enqueue squares not visited previously
-		//     (with Bounds checking - for each neighbour)
+		//     (with Bounds checking - for each neighbor)
 
-		// Western neighbour //
+		// Western neighbor //
 		if ( x - 1 >= 0 )
 		{// bounds checking
-			if ( ( maze[y][x - 1].ch == '.'
-				|| maze[y][x - 1].ch == 'G' )
+			if ( ( maze[y][x - 1].ch == '.' || maze[y][x - 1].ch == 'G' )
 				&& !maze[y][x - 1].visited )
 			{
-				// 4.4.1 enqueue new valid neighbour
+				// 4.4.1 enqueue new valid neighbor
 				enqueue( maze[y][x - 1], &Q );
 				for ( int i = 0; i < count; i++ )
 				{// 4.4.2 enqueue previous path
@@ -155,11 +154,10 @@ bool solveMazeBFS( char *fileName )
 				}
 			}
 		}
-		// Northern neighbour //
+		// Northern neighbor //
 		if ( y - 1 >= 0 )
 		{
-			if ( ( maze[y - 1][x].ch == '.'
-				|| maze[y - 1][x].ch == 'G' )
+			if ( ( maze[y - 1][x].ch == '.' || maze[y - 1][x].ch == 'G' )
 				&& !maze[y - 1][x].visited )
 			{
 				enqueue( maze[y - 1][x], &Q );
@@ -171,11 +169,10 @@ bool solveMazeBFS( char *fileName )
 				}
 			}
 		}
-		// Southern neighbour //
+		// Southern neighbor //
 		if ( y + 1 < rows )
 		{
-			if ( ( maze[y + 1][x].ch == '.'
-				|| maze[y + 1][x].ch == 'G' )
+			if ( ( maze[y + 1][x].ch == '.' || maze[y + 1][x].ch == 'G' )
 				&& !maze[y + 1][x].visited )
 			{
 				enqueue( maze[y + 1][x], &Q );
@@ -187,11 +184,10 @@ bool solveMazeBFS( char *fileName )
 				}
 			}
 		}
-		// Eastern neighbour //
+		// Eastern neighbor //
 		if ( x + 1 < columns )
 		{
-			if ( ( maze[y][x + 1].ch == '.'
-				|| maze[y][x + 1].ch == 'G' )
+			if ( ( maze[y][x + 1].ch == '.' || maze[y][x + 1].ch == 'G' )
 				&& !maze[y][x + 1].visited )
 			{
 				enqueue( maze[y][x + 1], &Q );
@@ -234,6 +230,8 @@ int main( int argc,
 		printf( "Solution does not exist.\n" );
 	}
 
-	std::system( "pause" );
-	return 0;
+#if defined _DEBUG && !defined NDEBUG
+	while ( !getchar() );
+#endif
+	return EXIT_SUCCESS;
 }
